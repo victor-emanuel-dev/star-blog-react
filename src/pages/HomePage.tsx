@@ -114,16 +114,17 @@ const HomePage: FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPosts.map((post) => (
             <PostCard
-              key={post.id}
-              id={post.id}
-              title={post.title}
-              content={post.content}
-              date={post.date}
-              author={post.author}
-              categories={post.categories}
-              likes={post.likes}
-              commentCount={post.commentCount}
-            />
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            content={post.content || ""} // garante string
+            date={post.date}
+            author={post.author} // passa a string diretamente
+            categories={post.categories}
+            likes={post.likes}
+            commentCount={post.commentCount}
+          />
+          
           ))}
         </div>
       )}

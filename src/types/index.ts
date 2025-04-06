@@ -1,33 +1,36 @@
 export interface User {
   id: number;
   email: string;
-  name: string;
-  avatarUrl: string | null;
-  created_at: string;
-  updated_at: string;
+  name: string | null;
+  avatarUrl?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Post {
   id: number | string;
   title: string;
   content?: string;
-  author: string;
+  author: { id: number | null; name: string | null; } | null;
   date: string;
   categories: string[];
   likes: number;
-  likedByCurrentUser?: boolean;
   commentCount: number;
-  created_at?: string;
-  updated_at?: string;
+  likedByCurrentUser?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface CommentUser {
+  id: number;
+  name: string | null;
+  avatarUrl: string | null;
 }
 
 export interface Comment {
   id: number;
   content: string;
   createdAt: string;
-  user?: {
-    id: number;
-    name: string;
-    avatarUrl?: string | null;
-  };
+  updatedAt?: string; // Add optional updatedAt
+  user: CommentUser;
 }

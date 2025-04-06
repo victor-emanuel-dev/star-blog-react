@@ -56,7 +56,7 @@ const PostCard: FC<PostCardProps> = ({
     setLikeError(null);
     try {
       const response = await toggleLikePost(id);
-      setDisplayLikes(response.likes);
+      setDisplayLikes(response.likesCount);
       setIsLiked(response.liked);
     } catch (err) {
       setLikeError(

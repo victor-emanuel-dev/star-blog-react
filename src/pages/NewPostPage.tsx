@@ -21,13 +21,19 @@ const NewPostPage: FC = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
 
   const handleCreatePost = async (postData: PostInput) => {
     setIsLoading(true);
     setError(null);
-
+  
     try {
-      await createPost(postData);
+      await createPost({
+        ...postData,
+        author: { id: null, name: "Anonymous" }, // ou use um valor real do usuário logado
+        likes: 0,
+        commentCount: 0,
+      });
       navigate("/", { replace: true });
     } catch (err) {
       setError(
@@ -38,6 +44,7 @@ const NewPostPage: FC = () => {
       setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-4">
